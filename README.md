@@ -1,3 +1,0 @@
-AngularJS + Laravel  - Project Management
-==========
-
