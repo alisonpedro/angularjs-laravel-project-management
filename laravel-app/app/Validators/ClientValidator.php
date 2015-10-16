@@ -6,7 +6,7 @@
  * Time: 16:18
  */
 
-namespace CodeProject\Validator;
+namespace CodeProject\Validators;
 
 
 use Prettus\Validator\LaravelValidator;
