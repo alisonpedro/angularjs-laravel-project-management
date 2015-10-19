@@ -36,7 +36,7 @@ class ProjectController extends Controller
      */
     public function index()
     {
-        return $this->repository->all();
+        return $this->repository->findWhere( ['owner_id' => \Authorizer::getResourceOwnerId()] );
     }
 
 
@@ -59,6 +59,10 @@ class ProjectController extends Controller
      */
     public function show($id)
     {
+        if( $this->checkProjectOwner($id) == false ){
+            return [ 'erro' => 'Acesso negado'];
+        };
+
         return $this->repository->find($id);
     }
 
@@ -84,5 +88,13 @@ class ProjectController extends Controller
     public function destroy($id)
     {
         return $this->repository->find($id)->delete();
+    }
+
+    private function checkProjectOwner($projectId){
+
+        $userId = \Authorizer::getResourceOwnerId();
+
+        return $this->repository->isOwner($projectId, $userId);
+
     }
 }
