@@ -20,7 +20,7 @@ Route::post('oauth/access_token', function(){
 });
 
 
-Route::group(['middleware'=>'oauth'], function(){
+
     //Client
     Route::resource('client','ClientController', ['except'=>['create','edit']]);
 
@@ -38,7 +38,7 @@ Route::group(['middleware'=>'oauth'], function(){
         Route::post('{id}/file', 'ProjectFileController@store');
     });
 
-});
+
 
 //Route::get('client', ['middleware'=>'oauth','uses'=>'ClientController@index']);
 
